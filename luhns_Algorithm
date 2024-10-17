@@ -1,0 +1,57 @@
+/*This program is tasked with taking in a credit card number, and finding if it is valid or not, using an algorithm called "Luhn's algorithm".
+We read the credit card from right to left, doubling every second digit, and subtracting 9 if num > 9
+We then take the sum of all the digits and modulus by 10.
+If the modulo 10 is equal to 0 then the number is valid, else it is not valid.
+*/
+
+
+import java.util.Scanner;
+
+public class luhns_Algorithm {
+  public static void main(String [] args) {
+    //Scanner object to take input from the user
+    Scanner scan = new Scanner(System.in);
+
+    //Prompt the user to enter input, and store it in cardNumber
+    System.out.println("Enter your credit card number: ");
+    String cardNumber = scan.nextLine();
+    scan.close();
+
+    //Declare integer array to hold the digits of cardNumber
+    int [] digits = new int[cardNumber.legnth];
+
+    //Convert each character in cardNumber into an integer and store it in digits array
+    for(int i = 0; i < cardNumber.length() - 1; i++) {
+      digits[i] = Character.getNumericValue(cardNumber.charAt(i));
+    }
+
+    //Every second digit (from right to left) is doubled
+    for(int i = digits.length - 1; i >= 0; i -= 2) {
+      int doubledValue = digits[i] * 2;
+
+      //if the doubled value > 9, subtract 9
+      if(doubledValue > 9) {
+        doubledValue -= 9;
+      }
+      //Store the adjusted value back into the array
+      digits[i] = doubledValue;
+    }
+
+    //Declare sum and sum all the digits
+    int sum = 0;
+    for(int i = 0; i < digits.length; i++) {
+      sum += digits[i];
+    }
+
+    //Modulus sum by 10 to obtain the remainder
+    sum %= 10;
+
+    //If remainder = 0 the card is valid, else the card is invalid
+    if(sum == 0) {
+      System.out.println("Valid");
+    }
+    else {
+      System.out.println("Invalid");
+    }
+}
+}
