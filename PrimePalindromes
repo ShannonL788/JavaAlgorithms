@@ -1,0 +1,77 @@
+//Write a java program that takes in a number N and finds the smallest palindrome prime greater than or equal to N. 
+//Using two methods - one to check if the number is prime and one to check if the number is a palindrome.
+
+import java.util.Scanner;
+
+public class PrimePalindrome
+{
+    public static void main(String [] args)
+    {
+        Scanner scan = new Scanner(System.in);
+        
+        int num = scan.nextInt();
+        
+        //if the num is even and not 2, increment it to the next odd number
+        if(num % 2 == 0 && num != 2)
+        {
+            num++;
+        }
+        
+        //while both methods return true
+        while(true)
+        {
+            if(isPrime(num) && isPalindrome(num))
+            {
+                System.out.println("The next prime palindrome is " + num);
+                break;
+            }
+            num += 2; //move to the next odd number
+        }
+    }
+    
+    public static boolean isPrime(int num)
+    {
+        int count = 1;
+        
+        for(int i = 2; i < num / 2; i++)
+        {
+            if(num % i == 0)
+            {
+                count = 0;
+            }
+        }
+        
+        if(count == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    public static boolean isPalindrome(int num)
+    {
+        //convert integer to string
+        String s1 = Integer.toString(num);
+        
+        String reverse = new String("");
+        char ch;
+        
+        for(int i = 0; i < s1.length(); i++)
+        {
+            ch = s1.charAt(i);
+            reverse = ch + reverse;
+        }
+        
+        if(s1.equalsIgnoreCase(reverse))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
