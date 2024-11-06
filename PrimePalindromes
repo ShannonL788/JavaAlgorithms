@@ -1,6 +1,3 @@
-//Write a java program that takes in a number N and finds the smallest palindrome prime greater than or equal to N. 
-//Using two methods - one to check if the number is prime and one to check if the number is a palindrome.
-
 import java.util.Scanner;
 
 public class PrimePalindrome
