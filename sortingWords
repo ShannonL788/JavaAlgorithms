@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class sortingWords {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        
+        int size = scan.nextInt();
+        String[] array = new String[size];
+        scan.nextLine(); // Fixes ArrayOutOfBoundsError
+        
+        for (int i = 0; i < size; i++) {
+            array[i] = scan.nextLine();
+        }
+        
+        scan.close();
+        
+        shortestWords(array);
+        longestWords(array);
+    }
+
+    public static void shortestWords(String[] array) {
+    	
+        for (int i = 0; i < array.length - 1; i++) {
+        	
+            for (int j = i + 1; j < array.length; j++) {
+                // if i length is greater than j length 
+            	// or if i length is equal to j and i comes after j alphabetically
+                if (array[i].length() > array[j].length() || (array[i].length() == array[j].length() && array[i].compareTo(array[j]) > 0)) {
+                    // if statement is true, putting value of j into i to print it off
+                	// putting value of i into j to compare to next value
+                    String temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        
+        // Print sorted array using a for loop
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+    
+    public static void longestWords(String[] array) {
+    	
+        for (int i = 0; i < array.length - 1; i++) {
+        	
+            for (int j = i + 1; j < array.length; j++) {
+                // if i length is less than j length 
+            	// or if i length is equal to j and j comes after i alphabetically
+                if (array[i].length() < array[j].length() || (array[i].length() == array[j].length() && array[i].compareTo(array[j]) < 0)) {
+                    // if statement is true, putting value of j into i to print it off
+                	  // putting value of i into j to compare to next value
+                    String temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+        
+        // Print sorted array using a for loop
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+    }
+}
